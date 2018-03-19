@@ -1,0 +1,51 @@
+// 设置编码
+@charset "utf-8";
+
+// 表单项目的容器
+.smart-form-group{
+  border : 1px solid #ffffff;
+  border-radius : 7px;
+
+  // 统一让下面间隔16px
+  margin-bottom: 16px;
+
+  // 清除浮动
+  &::after{
+    display: block;
+    content: '';
+    clear: both;
+  }
+
+  // 左侧标签（webfont）
+  .form-label{
+      color: #ffffff;
+      float: left;
+      width: 12%;
+      font-size: 21px;
+
+      text-align: center;
+      line-height: 44px;
+
+      margin-bottom: 0;
+  }
+  // 右侧输入框
+  .form-field{
+      float: left;
+      width: 88%;
+
+      padding-left: 0;
+      margin-bottom: 0;
+
+      font-size: 18px;
+
+      background-color: transparent;
+      border-width: 0;
+      color : #ffffff;
+
+      &:focus, &:hover, &:active{
+        background-color: transparent;
+        border-width: 0;
+        color : #ffffff;
+      }
+  }
+}

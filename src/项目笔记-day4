@@ -1,0 +1,49 @@
+
+登录页面
+    1.布局
+    2.交互
+      1)  对登录按钮，添加点击事件
+          a、对SmartButton添加onClick（事件）属性
+          b、SmartButton内部，必须使用传入的事件响应函数，把他挂到内置input组件上
+          c、事件响应函数中的this，3种修改方式：
+              1） onClick={this.doLogin.bind(this)}
+              2)  constructor (){   this.doLogin = this.doLogin.bind(this)   }
+              3)  箭头函数 onClick={()=>{this.doLogin()}} 【采纳，箭头函数中内容是事件触发时的代码，所以这里不是定义，而是需要把执行的所有代码都写在这】
+                  * 箭头函数只能定义匿名函数
+                  * 箭头函数会修改函数执行的this执行，默认都指向定义时的作用域this
+                      解析： ()=>{this.doLogin()}  等价于  (function(){this.doLogin()}).bind(this)
+          注意项：
+              1） 自定义组件的事件定义（必须一层一层传入）
+              2） 修改this指向，3种解决方式（推荐ES6箭头函数）
+
+      2） 获取表单内容
+          a、为需要动态获取的内容，设置ref属性
+          b、在LoginPage中，使用this.refs可以获取子组件
+          c、在SmartFormInput中，要求提供一个可以直接获取输入框值的getValue方法（使用this.refs获取子组件）
+
+      3） 把表单内容，通过AJAX传递到后台
+          在React中，怎么发送AJAX？？（不推荐用JQUERY！！）
+          推荐使用axios发AJAX（https://www.npmjs.com/package/axios）
+            a、 安装axois模块
+            b、 在需要使用的地方，引入模块
+            c、 参照示例文档来使用
+
+
+      4） 根据结果反馈，进行页面的跳转或者错误提示！！
+
+
+SPA（single page application）单页面应用
+
+    基于AJAX技术，实现页面的局部刷新。
+
+    原理 ：
+        1、捕获页面地址的变化
+            hashchange事件
+
+        2、根据变化的hash地址，
+            从BOM的location对象中，获取地址栏的hash值变化
+
+        3、根据hash地址，做页面跳转
+          1） 根据hash地址拼装成url地址
+          2） 根据url地址，加载内容
+          3） 把加载的内容，渲染到页面的指定容器中
